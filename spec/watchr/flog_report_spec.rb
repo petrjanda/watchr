@@ -21,8 +21,8 @@ describe Watchr::FlogReport do
 
 
       describe '.methods' do
-        describe '.first' do
-          subject { flog_report.classes.first.methods.first }
+        describe '.last' do
+          subject { flog_report.classes.first.methods.last }
 
           its(:name) { should == 'bar' }
           its(:full_name) { should == 'Foo#bar' }
@@ -32,8 +32,8 @@ describe Watchr::FlogReport do
           its(:clazz) { should == flog_report.classes.first }
         end
 
-        describe '.last' do
-          subject { flog_report.classes.first.methods.last }
+        describe '.first' do
+          subject { flog_report.classes.first.methods.first }
 
           its(:name) { should == 'bar' }
           its(:full_name) { should == 'Foo::bar' }

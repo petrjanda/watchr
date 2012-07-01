@@ -1,6 +1,6 @@
 require 'flog'
-require 'lib/watchr/flog_report_class'
-require 'lib/watchr/flog_report_method'
+require 'watchr/flog_report_class'
+require 'watchr/flog_report_method'
 
 module Watchr
   #
