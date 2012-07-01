@@ -5,9 +5,7 @@ module Watchr
     def initialize(path)
       super({})
 
-      @classes = []
       flog(path)
-
       process_result
     end
 
@@ -19,7 +17,11 @@ module Watchr
       @classes
     end
 
+    private
+
     def process_result
+      @classes = []
+
       scores  = Hash.new 0
       methods = Hash.new { |h,k| h[k] = [] }
 
