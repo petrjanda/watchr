@@ -16,28 +16,30 @@ describe Watchr::FlogReportFormatter do
 
   before { flog_class_report.add_method(flog_method_report) }
 
-  subject { Watchr::FlogReportFormatter.generate(flog_report) }
+  describe '.generate' do
+    subject { Watchr::FlogReportFormatter.generate(flog_report) }
 
-  it { should == 
-    {
-      :total_score=>143.23, 
-      :classes=>[
-        {
-          :name=>"Foo", 
-          :total_score=>1.4, 
-          :methods_total_score=>1.2, 
-          :file=>"foo.rb", 
+    it 'created the aggregated data output' do
+      should == {
+        :total_score=>143.23, 
+        :classes=>[
+          {
+            :name=>"Foo", 
+            :total_score=>1.4, 
+            :methods_total_score=>1.2, 
+            :file=>"foo.rb", 
 
-          :methods=>[
-            {
-              :name=>"bar", 
-              :total_score=>1.2, 
-              :file=>"foo.rb", 
-              :line=>2
-            }
-          ]
-        }
-      ]
-    }
-  }
+            :methods=>[
+              {
+                :name=>"bar", 
+                :total_score=>1.2, 
+                :file=>"foo.rb", 
+                :line=>2
+              }
+            ]
+          }
+        ]
+      }
+    end
+  end
 end
