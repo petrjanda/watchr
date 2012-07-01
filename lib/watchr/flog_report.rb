@@ -1,4 +1,6 @@
 require 'flog'
+require 'lib/watchr/flog_report_class'
+require 'lib/watchr/flog_report_method'
 
 module Watchr
   class FlogReport < Flog
@@ -44,46 +46,6 @@ module Watchr
 
         @classes << clazz
       end
-    end
-  end
-
-  class FlogReportClass
-    attr_reader :name, :methods, :total_score
-
-    def initialize(name, score)
-      @name = name
-      @total_score = (10 * score).round / 10.0
-      @methods = []
-    end
-
-    def file
-      @file
-    end
-
-    def total_methods_score
-      @methods.reduce(0) {|sum, i| sum += i.total_score}
-    end
-
-    def add_method(method_report)
-      @methods << method_report
-      @file = method_report.file
-    end
-  end
-
-  class FlogReportMethod
-    attr_reader :clazz, :name, :total_score, :file, :line
-
-    def initialize(clazz, name, score, location)
-      @clazz = clazz
-      @full_name = name
-      @name = name.split(/#|::/).last
-      @total_score = (10 * score).round / 10.0
-      @file, @line = location.split(':')
-      @line = @line.to_i
-    end
-
-    def full_name
-      @full_name
     end
   end
 end
