@@ -3,7 +3,16 @@ require 'lib/watchr/flog_report_class'
 require 'lib/watchr/flog_report_method'
 
 module Watchr
+  #
+  # Seattle.rb Flog report.
+  #
   class FlogReport < Flog
+
+    #
+    # Generate flog report for a given path.
+    #
+    # @param {String|Array} Path or list of paths to generate report for.
+    #
     def initialize(path)
       super({})
 
@@ -11,10 +20,20 @@ module Watchr
       process_result
     end
 
+    #
+    # Get total complexity score.
+    #
+    # @return {Number} Score.
+    #
     def total_score
       (10 * total).round / 10.0
     end
 
+    #
+    # Get list of class reports.
+    #
+    # @return {Array.<FlogReportClass>} List of class reports.
+    #
     def classes
       @classes
     end
