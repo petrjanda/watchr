@@ -6,8 +6,8 @@ module Watchr
       super({})
 
       @classes = []
-
       flog(path)
+
       process_result
     end
 
@@ -25,7 +25,6 @@ module Watchr
 
       each_by_score(nil) do |class_method, score, call_list|
         klass = class_method.split(/#|::/).first
-
         methods[klass] << [class_method, score]
         scores[klass]  += score
       end
@@ -34,6 +33,8 @@ module Watchr
         clazz = FlogClassReport.new(klass, total)
 
         methods[klass].each do |name, score|
+          next if name =~ /#none/
+
           clazz.add_method(
             FlogMethodReport.new(clazz, name, score, method_locations[name])
           )
@@ -72,14 +73,15 @@ module Watchr
 
     def initialize(clazz, name, score, location)
       @clazz = clazz
-      @name = name.split('#').last
+      @full_name = name
+      @name = name.split(/#|::/).last
       @total_score = (10 * score).round / 10.0
       @file, @line = location.split(':')
       @line = @line.to_i
     end
 
     def full_name
-      [@clazz.name, '#', name].join
+      @full_name
     end
   end
 end
