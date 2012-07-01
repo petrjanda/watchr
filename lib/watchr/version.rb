@@ -1,0 +1,3 @@
+module Watchr
+  VERSION = "0.0.1"
+end
