@@ -32,13 +32,13 @@ module Watchr
       end
 
       scores.sort_by { |_, n| -n }.each do |klass, total|
-        clazz = FlogClassReport.new(klass, total)
+        clazz = FlogReportClass.new(klass, total)
 
         methods[klass].each do |name, score|
           next if name =~ /#none/
 
           clazz.add_method(
-            FlogMethodReport.new(clazz, name, score, method_locations[name])
+            FlogReportMethod.new(clazz, name, score, method_locations[name])
           )
         end
 
@@ -47,7 +47,7 @@ module Watchr
     end
   end
 
-  class FlogClassReport
+  class FlogReportClass
     attr_reader :name, :methods, :total_score
 
     def initialize(name, score)
@@ -70,7 +70,7 @@ module Watchr
     end
   end
 
-  class FlogMethodReport
+  class FlogReportMethod
     attr_reader :clazz, :name, :total_score, :file, :line
 
     def initialize(clazz, name, score, location)
