@@ -6,6 +6,7 @@ gemspec
 gem 'flog'
 gem 'flay'
 gem 'json', '1.6.1'
+gem 'ruby2ruby'
 
 gem 'rspec'
 gem 'shoulda-matchers'
