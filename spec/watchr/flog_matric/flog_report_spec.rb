@@ -1,8 +1,13 @@
 require 'spec_helper'
-require 'watchr/flog_report'
+require 'watchr/flog_metric/report'
 
-describe Watchr::FlogReport do
-  let(:flog_report) { Watchr::FlogReport.new(['spec/fixtures/class.rb', 'spec/fixtures/module.rb']) }
+describe Watchr::FlogMetric::Report do
+  let(:flog_report) { 
+    Watchr::FlogMetric::Report.new([
+      'spec/fixtures/class.rb', 
+      'spec/fixtures/module.rb'
+    ])
+  }
 
   describe '#total_score' do
     subject { flog_report.total_score }

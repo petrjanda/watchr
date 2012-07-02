@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'watchr/flog_report_class'
-require 'watchr/flog_report_formatter'
+require 'watchr/flog_metric/flog_report_class'
+require 'watchr/flog_metric/flog_report_formatter'
 
 describe Watchr::FlogReportFormatter do
 
