@@ -50,5 +50,17 @@ describe Watchr::FlogMetric::Report do
       end
     end
   end
+
+  describe '#by_file' do
+    subject { flog_report.classes_by_file('fixture') }
+
+    let(:klass) { stub('klass', :file => 'fixture') }
+
+    let(:classes) { [klass] }
+
+    before { flog_report.stubs(:classes).returns(classes) }
+
+    it { should include(klass) }
+  end
 end
 

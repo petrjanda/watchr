@@ -40,6 +40,10 @@ module Watchr
         @classes
       end
 
+      def classes_by_file(file)
+        classes.find_all {|klass| klass.file == file}
+      end
+
       private
 
       def process_result
