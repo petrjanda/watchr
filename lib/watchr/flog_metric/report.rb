@@ -54,7 +54,7 @@ module Watchr
           scores[klass]  += score
         end
 
-        scores.sort_by { |_, n| -n }.each do |klass, total|
+        scores.each do |klass, total|
           clazz = FlogReportClass.new(klass, total)
 
           methods[klass].each do |name, score|
