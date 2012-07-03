@@ -1,6 +1,6 @@
 require 'watchr/paths'
 require 'watchr/flay_metric/report'
-require 'watchr/flog_metric/report'
+require 'watchr/file_report'
 
 module Watchr
 
@@ -34,3 +34,4 @@ module Watchr
     end
   end
 end
+

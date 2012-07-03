@@ -19,6 +19,13 @@ module Watchr
         total
       end
 
+      def duplications_by_file(path)
+        duplications.find_all do |duplication|
+          false
+#          duplication.locations.any? {|location| location.file == path}
+        end
+      end
+
       def process_result
         @duplications = []
 
