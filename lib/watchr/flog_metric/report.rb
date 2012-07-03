@@ -1,6 +1,6 @@
 require 'flog'
-require 'watchr/flog_metric/flog_report_class'
-require 'watchr/flog_metric/flog_report_method'
+require 'watchr/flog_metric/class'
+require 'watchr/flog_metric/method'
 
 module Watchr
   module FlogMetric
@@ -11,14 +11,14 @@ module Watchr
     class Report < Flog
 
       #
-      # Generate flog report for a given path.
+      # Generate flog report for a given files.
       #
-      # @param {String|Array} Path or list of paths to generate report for.
+      # @param {Array} Array of file paths.
       #
-      def initialize(path)
+      def initialize(files)
         super({})
 
-        flog(path)
+        flog(files)
         process_result
       end
 
