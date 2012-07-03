@@ -54,13 +54,21 @@ describe Watchr::FlogMetric::Report do
   describe '#by_file' do
     subject { flog_report.classes_by_file('fixture') }
 
-    let(:klass) { stub('klass', :file => 'fixture') }
-
     let(:classes) { [klass] }
 
     before { flog_report.stubs(:classes).returns(classes) }
 
-    it { should include(klass) }
+    context 'with matching file' do
+      let(:klass) { stub('klass', :file => 'fixture') }
+
+      it { should include(klass) }
+    end
+
+    context 'without matching file' do
+      let(:klass) { stub('klass', :file => 'blah') }
+
+      it { should_not include(klass) }
+    end
   end
 end
 
