@@ -49,7 +49,8 @@ module Watchr
         methods = Hash.new { |h,k| h[k] = [] }
 
         each_by_score(nil) do |class_method, score, call_list|
-          klass = class_method.split(/#|::/).first
+          klass = class_method.split(/#|::/)[0..-2].join('::')
+
           methods[klass] << [class_method, score]
           scores[klass]  += score
         end

@@ -19,7 +19,7 @@ describe Watchr::FlogMetric::Report do
     describe 'Foo' do
       subject { flog_report.classes.first }
 
-      its(:name) { should == 'Foo' }
+      its(:name) { should == 'Baz::Foo' }
       its(:total_score) { should == 4.5 }
       its(:total_methods_score) { should == 3.4 }
       its(:file) { should == 'spec/fixtures/class.rb' }
@@ -30,10 +30,10 @@ describe Watchr::FlogMetric::Report do
           subject { flog_report.classes.first.methods.last }
 
           its(:name) { should == 'bar' }
-          its(:full_name) { should == 'Foo#bar' }
+          its(:full_name) { should == 'Baz::Foo#bar' }
           its(:total_score) { should == 1.7 }
           its(:file) { should == 'spec/fixtures/class.rb' }
-          its(:line) { should == 4 }
+          its(:line) { should == 5 }
           its(:clazz) { should == flog_report.classes.first }
         end
 
@@ -41,10 +41,10 @@ describe Watchr::FlogMetric::Report do
           subject { flog_report.classes.first.methods.first }
 
           its(:name) { should == 'bar' }
-          its(:full_name) { should == 'Foo::bar' }
+          its(:full_name) { should == 'Baz::Foo::bar' }
           its(:total_score) { should == 1.7 }
           its(:file) { should == 'spec/fixtures/class.rb' }
-          its(:line) { should == 12 }
+          its(:line) { should == 13 }
           its(:clazz) { should == flog_report.classes.first }
         end
       end

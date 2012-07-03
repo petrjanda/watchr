@@ -1,19 +1,21 @@
-class Foo
-  attr_reader :bar
+module Baz
+  class Foo
+    attr_reader :bar
 
-  def bar
-    if true == false
-      return false
-    else
-      return true
+    def bar
+      if true == false
+        return false
+      else
+        return true
+      end
     end
-  end
 
-  def self.bar
-    if true == false
-      return false
-    else
-      return true
+    def self.bar
+      if true == false
+        return false
+      else
+        return true
+      end
     end
   end
 end

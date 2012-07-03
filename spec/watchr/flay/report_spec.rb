@@ -20,7 +20,7 @@ describe Watchr::FlayMetric::Report do
         subject { report.duplications.first.locations }
 
         its(:first) { subject.file.should == 'spec/fixtures/class.rb' }
-        its(:first) { subject.line.should == 4 }
+        its(:first) { subject.line.should == 5 }
 
         its(:last) { subject.file.should == 'spec/fixtures/module.rb' }
         its(:last) { subject.line.should == 2 }
