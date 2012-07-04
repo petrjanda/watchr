@@ -1,5 +1,6 @@
 require 'flay'
 require 'watchr/flay_metric/diff'
+require 'watchr/location'
 
 module Watchr
   module FlayMetric
@@ -39,7 +40,7 @@ module Watchr
           diff = Diff.new(same, nodes, bonus, mass)
 
           nodes.each do |x|
-            diff.add_location(x.file, x.line)
+            diff.add_location(Location.new(x.file, x.line))
           end
 
           r2r = Ruby2Ruby.new

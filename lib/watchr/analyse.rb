@@ -1,6 +1,6 @@
 require 'watchr/paths'
 require 'watchr/flay_metric/report'
-require 'watchr/file_report'
+require 'watchr/file_analyse'
 
 module Watchr
 
@@ -31,7 +31,7 @@ module Watchr
 
       # Create report for each file.
       @files = files.map do |file|
-        file_report = Watchr::FileReport.new(file)
+        file_report = Watchr::FileAnalyse.new(file)
         file_report.flay(flay.duplications_by_file(file))
 
         file_report

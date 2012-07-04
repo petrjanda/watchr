@@ -15,21 +15,12 @@ module Watchr
         @mass = mass
       end
 
-      def add_location(file, line)
-        @locations << DiffLocation.new(file, line)
+      def add_location(location)
+        @locations << location
       end
 
       def code=(code)
         @code = code
-      end
-    end
-
-    class DiffLocation
-      attr_reader :file, :line
-
-      def initialize(file, line)
-        @file = file
-        @line = line
       end
     end
   end
