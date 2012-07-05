@@ -6,6 +6,13 @@ module Watchr
       @file = file
       @line = line
     end
+
+    def self.from_path(path)
+      file, line = location.split(':')
+      line = line.to_i
+
+      Location.new(file, line)
+    end
   end
 end
 

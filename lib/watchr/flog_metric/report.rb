@@ -67,7 +67,10 @@ module Watchr
 
             clazz.add_method(
               FlogReportMethod.new(
-                clazz, name, score, method_locations[name]
+                clazz,
+                name,
+                score,
+                Location.from_path(method_locations[name])
               )
             )
           end
