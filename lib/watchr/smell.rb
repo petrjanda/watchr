@@ -31,13 +31,13 @@ module Watchr
     #
     SIMILAR_CODE = :similar_code
 
-    def initialize(type, context, locations, description)
+    def initialize(type, context, description, locations)
       @type = type
       @context = context
       @description = description
       @locations = []
 
-      locations.each {|l| add_location(l)}
+      Array(locations).each {|l| add_location(l)}
     end
 
     def type
