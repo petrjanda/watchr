@@ -18,7 +18,7 @@ module Watchr
 
     def add_method(method_report)
       @methods << method_report
-      @location = Location.new(method_report.file)
+      @location = Location.new(method_report.location.file)
     end
   end
 end
