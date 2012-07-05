@@ -5,9 +5,6 @@ gemspec
 
 gem 'flog'
 gem 'flay'
-gem 'reek'
-
-gem 'json', '1.6.1'
 gem 'ruby2ruby'
 
 gem 'rspec'

@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Petr Janda"]
   s.email       = ["petrjanda@me.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = 'Ruby static code analysis'
+  s.description = 'Utility to gather summary of code smells according to multiple analysers.'
 
   s.rubyforge_project = "watchr"
 
@@ -21,4 +21,7 @@ Gem::Specification.new do |s|
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
+  s.add_dependency 'flog'
+  s.add_dependency 'flay'
+  s.add_dependency 'ruby2ruby'
 end
