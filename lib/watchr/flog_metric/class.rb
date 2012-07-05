@@ -1,6 +1,6 @@
 module Watchr
   class FlogReportClass
-    attr_reader :name, :methods, :total_score
+    attr_reader :name, :methods, :total_score, :location
 
     def initialize(name, score)
       @name = name
@@ -8,8 +8,8 @@ module Watchr
       @methods = []
     end
 
-    def file
-      @file
+    def location
+      @location
     end
 
     def total_methods_score
@@ -18,7 +18,7 @@ module Watchr
 
     def add_method(method_report)
       @methods << method_report
-      @file = method_report.file
+      @location = Location.new(method_report.file)
     end
   end
 end

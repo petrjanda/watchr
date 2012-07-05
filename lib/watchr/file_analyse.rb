@@ -1,4 +1,6 @@
 require 'watchr/flog_metric/report'
+require 'watchr/smell'
+require 'watchr/smells_collector'
 
 module Watchr
   #
@@ -7,6 +9,9 @@ module Watchr
   # improvements.
   #
   class FileAnalyse
+
+    attr_reader :path
+
     #
     # Craete new file analyse.
     #
@@ -14,7 +19,36 @@ module Watchr
     #
     def initialize(path)
       @path = path
-      @flog_report = FlogMetric::Report.new([path])
+      @smells = SmellsCollector.new
+
+      flog_metric = FlogMetric::Report.new([path])
+      flog_metric.classes.each do |klass|
+        if klass.total_score > 150
+          @smells.add(
+            Smell.new(
+              Smell::VERY_COMPLEX_OBJECT,
+              klass.name,
+              [klass.location],
+              klass.total_score
+            )
+          )
+        end
+
+        if klass.total_score > 50
+          @smells.add(
+            Smell.new(
+              Smell::COMPLEX_OBJECT,
+              klass.name,
+              [klass.location],
+              klass.total_score
+            )
+          )
+        end
+      end
+    end
+
+    def smelly?
+      smells.any?
     end
 
     #
@@ -26,6 +60,10 @@ module Watchr
     #
     def flay(report)
       @flay_report = report
+    end
+
+    def smells
+      @smells.all
     end
   end
 end

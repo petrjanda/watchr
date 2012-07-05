@@ -66,7 +66,9 @@ module Watchr
             next if name =~ /#none/
 
             clazz.add_method(
-              FlogReportMethod.new(clazz, name, score, method_locations[name])
+              FlogReportMethod.new(
+                clazz, name, score, method_locations[name]
+              )
             )
           end
 

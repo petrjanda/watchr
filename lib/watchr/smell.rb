@@ -1,5 +1,5 @@
 module Watchr
-  class Recommendation
+  class Smell
 
     #
     # Method complexity is high.
@@ -31,8 +31,13 @@ module Watchr
     #
     SIMILAR_CODE = :similar_code
 
-    def initialize(type)
+    def initialize(type, context, locations, description)
       @type = type
+      @context = context
+      @description = description
+      @locations = []
+
+      locations.each {|l| add_location(l)}
     end
 
     def type
@@ -41,6 +46,14 @@ module Watchr
 
     def locations
       @locations
+    end
+
+    def description
+      @description
+    end
+
+    def context
+      @context
     end
 
     def add_location(location)
