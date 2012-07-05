@@ -21,7 +21,7 @@ module Watchr
     # @param {String} Path to code folders.
     #
     def initialize(path)
-      files = Paths.expand_dirs_to_files(path)
+      files = Paths.files_by_dirs(path)
 
       # Flay essentially cant be done on file level because its first class
       # citizen is duplication of code between files. Its done once for all
