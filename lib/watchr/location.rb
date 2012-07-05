@@ -9,7 +9,7 @@ module Watchr
 
     def self.from_path(path)
       file, line = path.split(':')
-      line = line.to_i
+      line = line && line.to_i
 
       Location.new(file, line)
     end

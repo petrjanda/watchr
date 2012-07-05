@@ -1,6 +1,6 @@
 module Watchr
   module Paths
-    def self.expand_dirs_to_files *dirs
+    def self.files_by_dirs *dirs
       extensions = ['rb']
 
       dirs.flatten.map { |p|
