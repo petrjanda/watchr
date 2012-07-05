@@ -1,6 +1,7 @@
 require 'flog'
 require 'watchr/flog_metric/class'
 require 'watchr/flog_metric/method'
+require 'watchr/location'
 
 module Watchr
   module FlogMetric

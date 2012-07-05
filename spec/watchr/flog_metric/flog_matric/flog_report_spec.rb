@@ -22,7 +22,12 @@ describe Watchr::FlogMetric::Report do
       its(:name) { should == 'Baz::Foo' }
       its(:total_score) { should == 4.5 }
       its(:total_methods_score) { should == 3.4 }
-      its(:file) { should == 'spec/fixtures/class.rb' }
+
+      describe '#location' do
+        subject { flog_report.classes.first.location }
+        
+        its(:file) { should == 'spec/fixtures/class.rb' }
+      end
 
 
       describe '.methods' do
@@ -32,9 +37,14 @@ describe Watchr::FlogMetric::Report do
           its(:name) { should == 'bar' }
           its(:full_name) { should == 'Baz::Foo#bar' }
           its(:total_score) { should == 1.7 }
-          its(:file) { should == 'spec/fixtures/class.rb' }
-          its(:line) { should == 5 }
           its(:clazz) { should == flog_report.classes.first }
+
+          describe '#location' do
+            subject { flog_report.classes.first.methods.last.location }
+
+            its(:file) { should == 'spec/fixtures/class.rb' }
+            its(:line) { should == 5 }
+          end
         end
 
         describe '.first' do
@@ -43,9 +53,15 @@ describe Watchr::FlogMetric::Report do
           its(:name) { should == 'bar' }
           its(:full_name) { should == 'Baz::Foo::bar' }
           its(:total_score) { should == 1.7 }
-          its(:file) { should == 'spec/fixtures/class.rb' }
-          its(:line) { should == 13 }
           its(:clazz) { should == flog_report.classes.first }
+
+          describe '#location' do
+            subject { flog_report.classes.first.methods.first.location }
+
+            its(:file) { should == 'spec/fixtures/class.rb' }
+            its(:line) { should == 13 }
+          end
+
         end
       end
     end
