@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 require "watchr/version"
 
 Gem::Specification.new do |s|
-  s.name        = "watchr"
+  s.name        = "ruby-watchr"
   s.version     = Watchr::VERSION
   s.authors     = ["Petr Janda"]
   s.email       = ["petrjanda@me.com"]
