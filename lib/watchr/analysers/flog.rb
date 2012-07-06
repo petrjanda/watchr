@@ -42,8 +42,7 @@ module Watchr
 
       def get_smell_level?(target, type)
         trashold = get_trashold(:very_complex, type)
-        complexity = target.total_score >= trashold ?
-          :very_complex : :complex
+        complexity = target.total_score >= trashold ? :very_complex : :complex
 
         get_smell_type(complexity, type.upcase)
       end
