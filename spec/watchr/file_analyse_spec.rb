@@ -2,6 +2,9 @@ require 'spec_helper'
 require 'watchr/file_analyse'
 
 describe Watchr::FileAnalyse do
+
+  it { Watchr::FileAnalyse.ancestors.should include(Watchr::Analysers::Flog) }
+
   let(:path) { 'spec/fixtures/class.rb' }
 
   let(:file_analyse) { Watchr::FileAnalyse.new(path) }

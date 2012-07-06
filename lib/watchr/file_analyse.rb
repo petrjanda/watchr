@@ -2,6 +2,8 @@ require 'watchr/flog_metric/report'
 require 'watchr/smell'
 require 'watchr/smells_collector'
 
+require 'watchr/analysers/flog'
+
 module Watchr
   #
   # Analyse for one given file. All the different metric analyse data are
@@ -9,6 +11,7 @@ module Watchr
   # improvements.
   #
   class FileAnalyse
+    include Analysers::Flog
 
     attr_reader :path
 
