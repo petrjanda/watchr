@@ -24,30 +24,7 @@ module Watchr
       @path = path
       @smells = SmellsCollector.new
 
-      flog_metric = FlogMetric::Report.new([path])
-      flog_metric.classes.each do |klass|
-        if klass.total_score > 150
-          @smells.add(
-            Smell.new(
-              Smell::VERY_COMPLEX_OBJECT,
-              klass.name,
-              [klass.location],
-              klass.total_score
-            )
-          )
-        end
-
-        if klass.total_score > 50
-          @smells.add(
-            Smell.new(
-              Smell::COMPLEX_OBJECT,
-              klass.name,
-              [klass.location],
-              klass.total_score
-            )
-          )
-        end
-      end
+      analyse_flog(FlogMetric::Report.new([path]))
     end
 
     def smelly?
