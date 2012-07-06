@@ -41,38 +41,48 @@ describe Watchr::Analysers::Flog do
   subject { analyse.analyse_flog(report) }
 
   describe '#analyse_flog' do
+    let(:smell) { stub('smell') }
+
+    before { Watchr::Smell.stubs(:new).returns(smell) }
+
     it 'should add smell for complex method' do
-      analyse.expects(:add_smell) \
-        .with(
-          Watchr::Smell::COMPLEX_METHOD,
-          complex_method.name,
-          complex_method.location,
-          complex_method.total_score
-        )
+      Watchr::Smell.expects(:new).with(
+        Watchr::Smell::COMPLEX_METHOD,
+        complex_method.name,
+        '',
+        complex_method.location,
+        { :score => complex_method.total_score }
+      )
+
+      analyse.expects(:add_smell).returns(smell)
 
       subject
     end
 
     it 'should add smell for very complex method' do
-      analyse.expects(:add_smell) \
-        .with(
-          Watchr::Smell::VERY_COMPLEX_METHOD,
-          very_complex_method.name,
-          very_complex_method.location,
-          very_complex_method.total_score
-        )
+      Watchr::Smell.expects(:new).with(
+        Watchr::Smell::VERY_COMPLEX_METHOD,
+        very_complex_method.name,
+        '',
+        very_complex_method.location,
+        { :score => very_complex_method.total_score }
+      )
+
+      analyse.expects(:add_smell).returns(smell)
 
       subject
     end
 
     it 'should add smell for very complex object' do
-      analyse.expects(:add_smell) \
-        .with(
-          Watchr::Smell::VERY_COMPLEX_OBJECT,
-          clazz.name,
-          clazz.location,
-          clazz.total_score
-        )
+      Watchr::Smell.expects(:new).with(
+        Watchr::Smell::VERY_COMPLEX_OBJECT,
+        clazz.name,
+        '',
+        clazz.location,
+        { :score => clazz.total_score }
+      )
+
+      analyse.expects(:add_smell).returns(smell)
 
       subject
     end

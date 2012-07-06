@@ -45,5 +45,9 @@ module Watchr
     def smells
       @smells.all
     end
+
+    def add_smell(smell)
+      @smells.add(smell)
+    end
   end
 end

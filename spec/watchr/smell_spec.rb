@@ -13,7 +13,9 @@ describe Watchr::Smell do
 
   let(:context) { 'context' }
 
-  let(:smell) { Watchr::Smell.new(type, context, description, locations) }
+  let(:options) { stub('options') }
+
+  let(:smell) { Watchr::Smell.new(type, context, description, locations, options) }
 
   subject { smell }
 
@@ -35,11 +37,9 @@ describe Watchr::Smell do
     end
   end
 
-  describe '#description' do
-    its(:description) { should == description }
-  end
+  its(:description) { should == description }
 
-  describe '#context' do
-    its(:context) { should == context }
-  end
+  its(:options) { should == options }
+
+  its(:context) { should == context }
 end
