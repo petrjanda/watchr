@@ -86,6 +86,5 @@ describe Watchr::Analysers::Flog do
 
       subject
     end
-
   end
 end

@@ -35,7 +35,7 @@ module Watchr
     # Store the flay report, which was evaluated on global basis
     # to check for duplications across multiple files.
     #
-    # @param {Array.<Watchr::FlayMetric::Diff>} Duplication details.
+    # @param {Array<Watchr::FlayMetric::Diff>} Duplication details.
     # @return nil
     #
     def flay(report)
