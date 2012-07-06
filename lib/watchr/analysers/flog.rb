@@ -5,9 +5,9 @@ module Watchr
     module Flog
       include SmellTypes
 
-      VERY_COMPLEX_CLASS_TRASHLOLD = 100
+      VERY_COMPLEX_OBJECT_TRASHOLD = 100
 
-      COMPLEX_CLASS_TRASHOLD = 50
+      COMPLEX_OBJECT_TRASHOLD = 50
 
       VERY_COMPLEX_METHOD_TRASHOLD = 40
 
@@ -26,20 +26,34 @@ module Watchr
       protected
 
       def analyse_class_complexity(klass)
-
+        analyse_complexity(klass, :object)
       end
 
       def analyse_method_complexity(method)
-        add_smell(
-          get_complexity?(method),
-          method.name, method.location, method.total_score
-        ) if method.total_score >= COMPLEX_METHOD_TRASHOLD
+        analyse_complexity(method, :method)
       end
 
-      def get_complexity?(method)
-        method.total_score > VERY_COMPLEX_METHOD_TRASHOLD ?
-          VERY_COMPLEX_METHOD :
-          COMPLEX_METHOD
+      def analyse_complexity(target, type)
+        add_smell(
+          get_complexity?(target, type),
+          target.name, target.location, target.total_score
+        ) if target.total_score >= get_trashold('COMPLEX', type.upcase)
+      end
+
+      def get_complexity?(target, type)
+        trashold = get_trashold('VERY_COMPLEX', type)
+        complexity = target.total_score >= trashold ?
+          'VERY_COMPLEX' : 'COMPLEX'
+
+        get_smell_type(complexity, type.upcase)
+      end
+
+      def get_trashold(complexity, type)
+        Watchr::Analysers::Flog.const_get("#{complexity}_#{type.upcase}_TRASHOLD")
+      end
+
+      def get_smell_type(complexity, target)
+        Watchr::SmellTypes.const_get("#{complexity}_#{target}")
       end
     end
   end

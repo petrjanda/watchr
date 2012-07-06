@@ -27,7 +27,10 @@ describe Watchr::Analysers::Flog do
     :total_score => 100)
   }
 
-  let(:clazz) { stub('class', 
+  let(:clazz) { stub('class',
+    :name => 'Class',
+    :location => stub('location'),
+    :total_score => 100,
     :methods => [method, complex_method, very_complex_method])
   }
   
@@ -38,7 +41,7 @@ describe Watchr::Analysers::Flog do
   subject { analyse.analyse_flog(report) }
 
   describe '#analyse_flog' do
-    it 'should add smell for complex methods' do
+    it 'should add smell for complex method' do
       analyse.expects(:add_smell) \
         .with(
           Watchr::Smell::COMPLEX_METHOD,
@@ -50,7 +53,7 @@ describe Watchr::Analysers::Flog do
       subject
     end
 
-    it 'should add smell for complex methods' do
+    it 'should add smell for very complex method' do
       analyse.expects(:add_smell) \
         .with(
           Watchr::Smell::VERY_COMPLEX_METHOD,
@@ -61,5 +64,18 @@ describe Watchr::Analysers::Flog do
 
       subject
     end
+
+    it 'should add smell for very complex object' do
+      analyse.expects(:add_smell) \
+        .with(
+          Watchr::Smell::VERY_COMPLEX_OBJECT,
+          clazz.name,
+          clazz.location,
+          clazz.total_score
+        )
+
+      subject
+    end
+
   end
 end
