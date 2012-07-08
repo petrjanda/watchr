@@ -1,8 +1,8 @@
 require 'watchr/flog_metric/report'
 require 'watchr/smell'
 require 'watchr/smells_collector'
-
 require 'watchr/analysers/flog'
+require 'watchr/rating'
 
 module Watchr
   #
@@ -12,6 +12,7 @@ module Watchr
   #
   class FileAnalyse
     include Analysers::Flog
+    include Rating
 
     attr_reader :path
 
