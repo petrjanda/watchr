@@ -18,7 +18,7 @@ module Watchr
         VERY_COMPLEX_METHOD,
         COMPLEX_OBJECT,
         VERY_COMPLEX_OBJECT
-        smell.options.total_score
+        smell.options.score
 
       when IDENTICAL_CODE,
         SIMILAR_CODE
