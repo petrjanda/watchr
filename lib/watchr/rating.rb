@@ -18,11 +18,11 @@ module Watchr
         VERY_COMPLEX_METHOD,
         COMPLEX_OBJECT,
         VERY_COMPLEX_OBJECT
-        smell.options.score
+        smell.options[:score]
 
       when IDENTICAL_CODE,
         SIMILAR_CODE
-        smell.options.mass
+        smell.options[:mass]
       end
     end
   end

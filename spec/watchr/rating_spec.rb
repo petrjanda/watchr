@@ -6,13 +6,13 @@ describe Watchr::Rating do
   let(:complexity_smell) { 
     stub('smell', 
       :type => Watchr::SmellTypes::COMPLEX_METHOD,
-      :options => stub(:score => 29.3))
+      :options => {:score => 29.3})
   }
 
   let(:duplication_smell) { 
     stub('smell', 
       :type => Watchr::SmellTypes::IDENTICAL_CODE,
-      :options => stub(:mass => 72))
+      :options => {:mass => 72})
   }
 
   let(:smells) { [complexity_smell, duplication_smell] }
