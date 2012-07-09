@@ -15,10 +15,12 @@ module Watchr
     def rate(smell)
       case smell.type
       when COMPLEX_METHOD,
-        VERY_COMPLEX_METHOD,
-        COMPLEX_OBJECT,
+        VERY_COMPLEX_METHOD
+        0.4 * smell.options[:score]
+
+      when COMPLEX_OBJECT,
         VERY_COMPLEX_OBJECT
-        smell.options[:score]
+        0.6 * smell.options[:score]
 
       when IDENTICAL_CODE,
         SIMILAR_CODE
