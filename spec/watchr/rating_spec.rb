@@ -27,6 +27,13 @@ describe Watchr::Rating do
   describe '#rating' do
     subject { analyse.rating }
 
-    it { should == 'F' }
+    context 'C' do
+      it { should == 'C' }
+    end
+
+    context 'A' do
+      let(:smells) { [] }
+      it { should == 'A' }
+    end
   end
 end

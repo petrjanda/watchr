@@ -5,8 +5,8 @@ module Watchr
     def rating
       total = smells.reduce(0) {|total, smell| total += rate(smell)}
 
-      [100, 60, 40, 20, 10].each_with_index do |limit, i|
-        return %w(F E D C B A)[i] if total > limit
+      [250, 180, 120, 70, 30, 0].each_with_index do |limit, i|
+        return %w(F E D C B A)[i] if total >= limit
       end
     end
 
