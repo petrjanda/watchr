@@ -16,11 +16,11 @@ module Watchr
       case smell.type
       when COMPLEX_METHOD,
         VERY_COMPLEX_METHOD
-        0.4 * smell.options[:score]
+        0.45 * smell.options[:score]
 
       when COMPLEX_OBJECT,
         VERY_COMPLEX_OBJECT
-        0.6 * smell.options[:score]
+        0.65 * smell.options[:score]
 
       when IDENTICAL_CODE,
         SIMILAR_CODE
