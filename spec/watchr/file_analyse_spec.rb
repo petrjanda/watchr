@@ -19,6 +19,8 @@ describe Watchr::FileAnalyse do
     subject { file_analyse.smelly? }
 
     context 'with no smells' do
+      before { file_analyse.stubs(:smells).returns([]) }
+
       it { should be_false }
     end
 

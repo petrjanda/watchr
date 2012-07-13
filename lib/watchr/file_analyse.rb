@@ -1,7 +1,9 @@
 require 'watchr/metrics/flog/report'
+require 'watchr/metrics/reek/report'
 require 'watchr/smell'
 require 'watchr/smells_collector'
 require 'watchr/analysers/flog'
+require 'watchr/analysers/reek'
 require 'watchr/rating'
 
 module Watchr
@@ -12,6 +14,7 @@ module Watchr
   #
   class FileAnalyse
     include Analysers::Flog
+    include Analysers::Reek
     include Rating
 
     attr_reader :path
@@ -24,8 +27,9 @@ module Watchr
     def initialize(path)
       @path = path
       @smells = SmellsCollector.new
-
+      
       analyse_flog(FlogMetric::Report.new([path]))
+      analyse_reek(ReekMetric::Report.new([path]))
     end
 
     def smelly?
