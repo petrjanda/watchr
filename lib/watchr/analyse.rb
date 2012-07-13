@@ -1,5 +1,5 @@
 require 'watchr/paths'
-require 'watchr/flay_metric/report'
+require 'watchr/metrics/flog/report'
 require 'watchr/file_analyse'
 
 module Watchr

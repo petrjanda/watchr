@@ -1,4 +1,4 @@
-require 'watchr/flog_metric/report'
+require 'watchr/metrics/flog/report'
 require 'watchr/smell'
 require 'watchr/smells_collector'
 require 'watchr/analysers/flog'

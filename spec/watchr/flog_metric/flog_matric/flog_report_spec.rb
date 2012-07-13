@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'watchr/flog_metric/report'
+require 'watchr/metrics/flog/report'
 
 describe Watchr::FlogMetric::Report do
   let(:flog_report) { 

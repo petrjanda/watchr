@@ -1,5 +1,5 @@
 require 'flay'
-require 'watchr/flay_metric/diff'
+require 'watchr/metrics/flay/diff'
 require 'watchr/location'
 
 module Watchr

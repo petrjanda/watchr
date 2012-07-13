@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'watchr/flay_metric/report'
+require 'watchr/metrics/flay/report'
 
 describe Watchr::FlayMetric::Report do
   let(:report) { 
