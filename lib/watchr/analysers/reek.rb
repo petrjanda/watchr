@@ -23,8 +23,7 @@ module Watchr
           end
 
           add_smell(Watchr::Smell.new(
-            smell.smell['subclass'],
-            smell.location['context'], smell.smell['message'], location, {}
+            type, smell.location['context'], smell.smell['message'], location, {}
           )) unless type.nil?
         end
       end
