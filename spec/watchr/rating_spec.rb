@@ -6,7 +6,14 @@ describe Watchr::Rating do
   let(:complexity_smell) { 
     stub('smell', 
       :type => Watchr::SmellTypes::COMPLEX_METHOD,
-      :options => {:score => 29.3})
+      :options => {:score => 29.3}
+    )
+  }
+
+  let(:other_smell) { 
+    stub('smell', 
+      :type => 'other'
+    )
   }
 
   let(:duplication_smell) { 
@@ -15,7 +22,7 @@ describe Watchr::Rating do
       :options => {:mass => 72})
   }
 
-  let(:smells) { [complexity_smell, duplication_smell] }
+  let(:smells) { [complexity_smell, other_smell, duplication_smell] }
 
   let(:analyse) {
     analyse = stub('analyse', :smells => smells)

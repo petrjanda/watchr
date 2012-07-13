@@ -1,3 +1,5 @@
+require 'watchr/smell_types'
+
 module Watchr
   module Rating
     include SmellTypes
@@ -25,6 +27,8 @@ module Watchr
       when IDENTICAL_CODE,
         SIMILAR_CODE
         smell.options[:mass]
+      else
+        0
       end
     end
   end
