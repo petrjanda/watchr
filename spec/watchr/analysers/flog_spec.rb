@@ -47,7 +47,7 @@ describe Watchr::Analysers::Flog do
 
     it 'should add smell for complex method' do
       Watchr::Smell.expects(:new).with(
-        Watchr::Smell::COMPLEX_METHOD,
+        :complex_method,
         complex_method.name,
         '',
         complex_method.location,
@@ -61,7 +61,7 @@ describe Watchr::Analysers::Flog do
 
     it 'should add smell for very complex method' do
       Watchr::Smell.expects(:new).with(
-        Watchr::Smell::VERY_COMPLEX_METHOD,
+        :very_complex_method,
         very_complex_method.name,
         '',
         very_complex_method.location,
@@ -75,7 +75,7 @@ describe Watchr::Analysers::Flog do
 
     it 'should add smell for very complex object' do
       Watchr::Smell.expects(:new).with(
-        Watchr::Smell::VERY_COMPLEX_OBJECT,
+        :very_complex_object,
         clazz.name,
         '',
         clazz.location,

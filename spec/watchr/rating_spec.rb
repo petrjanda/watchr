@@ -5,7 +5,7 @@ describe Watchr::Rating do
 
   let(:complexity_smell) { 
     stub('smell', 
-      :type => Watchr::SmellTypes::COMPLEX_METHOD,
+      :type => :complex_method,
       :options => {:score => 29.3}
     )
   }
@@ -18,7 +18,7 @@ describe Watchr::Rating do
 
   let(:duplication_smell) { 
     stub('smell', 
-      :type => Watchr::SmellTypes::IDENTICAL_CODE,
+      :type => :identical_code,
       :options => {:mass => 72})
   }
 

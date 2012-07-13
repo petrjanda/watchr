@@ -12,20 +12,20 @@ module Watchr
             smell.location['lines'].first
           )
 
-          type = case smell.smell['subclass']
-          when 'IrresponsibleModule' then IRRESPONSIBLE_MODULE
-          when 'DuplicateMethodCall' then DUPLICATE_METHOD_CALL
-          when 'NestedIterators' then NESTED_ITERATORS
-          when 'TooManyStatements' then TOO_MANY_STATEMENTS
-          when 'FeatureEnvy' then FEATURE_ENVY
-          when 'UtilityFunction' then UTILITY_FUNCTION
-          else nil
-          end
-
           add_smell(Watchr::Smell.new(
-            type, smell.location['context'], smell.smell['message'], location, {}
-          )) unless type.nil?
+            underscore(smell.smell['subclass']).to_sym, smell.location['context'], smell.smell['message'], location, {}
+          ))
         end
+      end
+
+      private 
+
+      def underscore(text)
+        text.gsub(/::/, '/').
+        gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+        gsub(/([a-z\d])([A-Z])/,'\1_\2').
+        tr("-", "_").
+        downcase
       end
     end
   end

@@ -46,7 +46,7 @@ module Watchr
         threshold = get_threshold(:very_complex, type)
         complexity = target.total_score >= threshold ? :very_complex : :complex
 
-        get_smell_type(complexity, type.upcase)
+        get_smell_type(complexity, type)
       end
 
       def get_threshold(complexity, type)
@@ -54,7 +54,7 @@ module Watchr
       end
 
       def get_smell_type(complexity, type)
-        Watchr::SmellTypes.const_get("#{complexity.upcase}_#{type.upcase}")
+        "#{complexity}_#{type}".to_sym
       end
     end
   end
