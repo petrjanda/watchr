@@ -50,7 +50,8 @@ describe Watchr::Analysers::Flog do
         :complex_method,
         complex_method.name,
         "complexity = #{complex_method.total_score}",
-        complex_method.location
+        complex_method.location,
+        { :complexity => complex_method.total_score }
       )
 
       analyse.expects(:add_smell).returns(smell)
@@ -63,7 +64,8 @@ describe Watchr::Analysers::Flog do
         :very_complex_method,
         very_complex_method.name,
         "complexity = #{very_complex_method.total_score}",
-        very_complex_method.location
+        very_complex_method.location,
+        { :complexity => very_complex_method.total_score }
       )
 
       analyse.expects(:add_smell).returns(smell)
@@ -76,7 +78,8 @@ describe Watchr::Analysers::Flog do
         :very_complex_object,
         clazz.name,
         "complexity = #{clazz.total_score}",
-        clazz.location
+        clazz.location,
+        { :complexity => clazz.total_score }
       )
 
       analyse.expects(:add_smell).returns(smell)

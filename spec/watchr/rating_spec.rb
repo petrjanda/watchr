@@ -6,7 +6,7 @@ describe Watchr::Rating do
   let(:complexity_smell) { 
     stub('smell', 
       :type => :complex_method,
-      :options => {:score => 29.3}
+      :options => {:complexity => 29.3}
     )
   }
 

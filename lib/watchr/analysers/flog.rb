@@ -37,7 +37,10 @@ module Watchr
         add_smell(
           Watchr::Smell.new(
             get_smell_level?(target, type),
-            target.name, "complexity = #{target.total_score}", target.location
+            target.name, 
+            "complexity = #{target.total_score}", 
+            target.location,
+            { :complexity => target.total_score }
           )
         ) if target.total_score >= get_threshold(:complex, type.upcase)
       end

@@ -4,12 +4,12 @@ module Watchr
   class Smell
     include SmellTypes
 
-    def initialize(type, context, description, locations, options = {})
+    def initialize(type, context, description, locations, details = {})
       @type = type
       @context = context
       @description = description
       @locations = []
-      @options = options
+      @details = details
 
       Array(locations).each {|l| add_location(l)}
     end
@@ -30,8 +30,8 @@ module Watchr
       @context
     end
 
-    def options
-      @options
+    def details
+      @details
     end
 
     def add_location(location)
