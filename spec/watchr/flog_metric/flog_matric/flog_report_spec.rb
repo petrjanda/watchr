@@ -34,8 +34,8 @@ describe Watchr::FlogMetric::Report do
         describe '.last' do
           subject { flog_report.classes.first.methods.last }
 
-          its(:name) { should == 'bar' }
-          its(:full_name) { should == 'Baz::Foo#bar' }
+          its(:method_name) { should == 'bar' }
+          its(:name) { should == 'Baz::Foo#bar' }
           its(:total_score) { should == 1.7 }
           its(:clazz) { should == flog_report.classes.first }
 
@@ -50,8 +50,8 @@ describe Watchr::FlogMetric::Report do
         describe '.first' do
           subject { flog_report.classes.first.methods.first }
 
-          its(:name) { should == 'bar' }
-          its(:full_name) { should == 'Baz::Foo::bar' }
+          its(:method_name) { should == 'bar' }
+          its(:name) { should == 'Baz::Foo::bar' }
           its(:total_score) { should == 1.7 }
           its(:clazz) { should == flog_report.classes.first }
 
