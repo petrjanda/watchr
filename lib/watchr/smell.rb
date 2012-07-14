@@ -4,7 +4,7 @@ module Watchr
   class Smell
     include SmellTypes
 
-    def initialize(type, context, description, locations, options)
+    def initialize(type, context, description, locations, options = {})
       @type = type
       @context = context
       @description = description
