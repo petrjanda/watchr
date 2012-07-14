@@ -18,15 +18,15 @@ module Watchr
       case smell.type
       when :complex_method,
         :very_complex_method
-        0.45 * smell.options[:complexity]
+        0.45 * smell.details[:complexity]
 
       when :complex_object,
         :very_complex_object
-        0.65 * smell.options[:complexity]
+        0.65 * smell.details[:complexity]
 
       when :identical_code,
         :similar_code
-        smell.options[:mass]
+        smell.details[:mass]
       else
         0
       end
