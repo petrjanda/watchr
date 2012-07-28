@@ -1,6 +1,5 @@
 require 'flog'
 require 'watchr/metrics/flog/class_report_factory'
-require 'watchr/location'
 
 module Watchr
   module FlogMetric
