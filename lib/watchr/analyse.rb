@@ -31,10 +31,9 @@ module Watchr
 
       # Create report for each file.
       @files = files.map do |file|
-        file_report = Watchr::FileAnalyse.new(file)
-        file_report.flay(flay.duplications_by_file(file))
-
-        file_report
+        Watchr::FileAnalyse.new(file).tap { |file|
+          file.flay(flay.duplications_by_file(file))
+        }
       end
     end
   end
