@@ -1,3 +1,6 @@
+require 'watchr/metrics/flog/class'
+require 'watchr/metrics/flog/method'
+
 module Watchr
   module FlogMetric
     class ClassReportFactory
