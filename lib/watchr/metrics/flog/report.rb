@@ -1,8 +1,8 @@
 require 'flog'
 require 'watchr/metrics/flog/class'
 require 'watchr/metrics/flog/method'
+require 'watchr/metrics/flog/class_report_factory'
 require 'watchr/location'
-require 'watchr/metrics/flog/report_factory'
 
 module Watchr
   module FlogMetric
@@ -65,7 +65,9 @@ module Watchr
       def process_result
         methods, scores = process_scores
 
-        @classes = ReportFactory.build(methods, method_locations, scores)
+        @classes = scores.map do |klass, total|
+          ClassReportFactory.build(klass, total, methods[klass], method_locations)
+        end
       end
     end
   end

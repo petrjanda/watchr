@@ -1,15 +1,7 @@
 module Watchr
   module FlogMetric
-    class ReportFactory
-      def self.build(methods, method_locations, scores)
-        scores.map do |klass, total|
-          build_class_report(klass, total, methods[klass], method_locations)
-        end
-      end
-
-      private 
-
-      def self.build_class_report(klass, total, methods, method_locations)
+    class ClassReportFactory
+      def self.build(klass, total, methods, method_locations)
         clazz = FlogReportClass.new(klass, total)
 
         methods.each do |name, score|
