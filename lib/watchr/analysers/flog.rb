@@ -11,7 +11,7 @@ module Watchr
 
       VERY_COMPLEX_METHOD_THRESHOLD = 40
 
-      COMPLEX_METHOD_THRESHOLD = 20
+      COMPLEX_METHOD_THRESHOLD = 25
 
       def analyse_flog(report)
         report.classes.each do |klass|
@@ -34,30 +34,33 @@ module Watchr
       end
 
       def analyse_complexity(target, type)
+        score = target.total_score
+
         add_smell(
           Watchr::Smell.new(
-            get_smell_level?(target, type),
-            target.name, 
-            "complexity = #{target.total_score}", 
-            target.location,
-            { :complexity => target.total_score }
+            smell_type(score, type), target.name, 
+            "complexity = #{score}", target.location,
+            { :complexity => score }
           )
-        ) if target.total_score >= get_threshold(:complex, type.upcase)
+        ) if is_complex?(score, type)
       end
 
-      def get_smell_level?(target, type)
-        threshold = get_threshold(:very_complex, type)
-        complexity = target.total_score >= threshold ? :very_complex : :complex
+      def smell_type(score, type)
+        complexity = is_very_complex?(score, type) ? :very_complex : :complex
 
-        get_smell_type(complexity, type)
-      end
-
-      def get_threshold(complexity, type)
-        Watchr::Analysers::Flog.const_get("#{complexity.upcase}_#{type.upcase}_THRESHOLD")
-      end
-
-      def get_smell_type(complexity, type)
         "#{complexity}_#{type}".to_sym
+      end
+
+      def is_complex?(score, type)
+        is_complex_by_level?(score, type, :complex)
+      end
+
+      def is_very_complex?(score, type)
+        is_complex_by_level?(score, type, :very_complex)
+      end
+
+      def is_complex_by_level?(score, type, level)
+        score >= Flog.const_get("#{level.upcase}_#{type.upcase}_THRESHOLD")
       end
     end
   end

@@ -2,6 +2,7 @@ require 'flog'
 require 'watchr/metrics/flog/class'
 require 'watchr/metrics/flog/method'
 require 'watchr/location'
+require 'watchr/metrics/flog/report_factory'
 
 module Watchr
   module FlogMetric
@@ -47,11 +48,9 @@ module Watchr
 
       private
 
-      def process_result
-        @classes = []
-
+      def process_scores
         scores  = Hash.new 0
-        methods = Hash.new { |h,k| h[k] = [] }
+        methods = Hash.new { |hash,key| hash[key] = [] }
 
         each_by_score(nil) do |class_method, score, call_list|
           klass = class_method.split(/#|::/)[0..-2].join('::')
@@ -60,24 +59,13 @@ module Watchr
           scores[klass]  += score
         end
 
-        scores.each do |klass, total|
-          clazz = FlogReportClass.new(klass, total)
+        return methods, scores
+      end
 
-          methods[klass].each do |name, score|
-            next if name =~ /#none/
+      def process_result
+        methods, scores = process_scores
 
-            clazz.add_method(
-              FlogReportMethod.new(
-                clazz,
-                name,
-                score,
-                Location.from_path(method_locations[name])
-              )
-            )
-          end
-
-          @classes << clazz
-        end
+        @classes = ReportFactory.build(methods, method_locations, scores)
       end
     end
   end

@@ -1,5 +1,6 @@
 require 'flay'
 require 'watchr/metrics/flay/diff'
+require 'watchr/metrics/flay/diff_factory'
 require 'watchr/location'
 
 module Watchr
@@ -37,16 +38,7 @@ module Watchr
           node = nodes.first
           bonus = same ? nodes.size : 0
 
-          diff = Diff.new(same, nodes, bonus, mass)
-
-          nodes.each do |x|
-            diff.add_location(Location.new(x.file, x.line))
-          end
-
-          r2r = Ruby2Ruby.new
-          diff.code = n_way_diff(*nodes.map { |s| r2r.process(s.deep_clone) })
-
-          @duplications << diff
+          @duplications << DiffFactory.build(same, nodes, bonus, mass)
         end
       end
     end
