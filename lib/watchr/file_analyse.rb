@@ -1,6 +1,5 @@
 require 'watchr/metrics/flog/report'
 require 'watchr/metrics/reek/report'
-require 'watchr/smell'
 require 'watchr/smells_collector'
 require 'watchr/analysers/flog'
 require 'watchr/analysers/reek'
