@@ -37,6 +37,4 @@ describe Watchr::SmellsCollector do
       it { should be_false }
     end
   end
-
-
 end
