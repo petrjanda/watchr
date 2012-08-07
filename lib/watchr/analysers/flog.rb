@@ -1,4 +1,5 @@
 require 'watchr/smell'
+require 'watchr/smell_types'
 
 module Watchr
   module Analysers

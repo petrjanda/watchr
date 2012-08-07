@@ -1,9 +1,5 @@
-require 'watchr/smell_types'
-
 module Watchr
   class Smell
-    include SmellTypes
-
     attr_reader :type, :locations, :description, :context
     attr_accessor :details
 
