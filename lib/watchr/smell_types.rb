@@ -15,6 +15,7 @@ module Watchr
       :control_couple,
       :data_clump,
       :duplication,
+      :duplicate_method_call,
       :feature_envy,
       :irresponsible_module,
       :large_class,
