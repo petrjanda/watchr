@@ -6,18 +6,19 @@ module Watchr
       include SmellTypes
 
       def analyse_reek(report)
-        report.smells.each do |smell|
-          location = Location.new(
-            smell.location['source'], 
-            smell.location['lines'].first
+        report.smells.each do |reek_smell|
+          smell = Watchr::Smell.new(
+            underscore(reek_smell.smell['subclass']).to_sym, 
+            reek_smell.location['context'], 
+            reek_smell.smell['message'], 
           )
 
-          add_smell(Watchr::Smell.new(
-            underscore(smell.smell['subclass']).to_sym, 
-            smell.location['context'], 
-            smell.smell['message'], 
-            location
+          smell.add_location(Location.new(
+            reek_smell.location['source'], 
+            reek_smell.location['lines'].first
           ))
+
+          add_smell(smell)
         end
       end
 

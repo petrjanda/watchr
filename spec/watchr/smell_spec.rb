@@ -7,15 +7,13 @@ describe Watchr::Smell do
 
   let(:location) { 'location' }
 
-  let(:locations) { location }
-
   let(:description) { 'description' }
 
   let(:context) { 'context' }
 
   let(:details) { stub('details') }
 
-  let(:smell) { Watchr::Smell.new(type, context, description, locations, details) }
+  let(:smell) { Watchr::Smell.new(type, context, description) }
 
   subject { smell }
 
@@ -26,12 +24,14 @@ describe Watchr::Smell do
   describe '#locations' do
     subject { smell.locations }
 
+    before { smell.add_location(location) }
+
     context 'one location' do
       it { should == [location] }
     end
 
     context 'multiple locations' do
-      let(:locations) { [location, location] }
+      before { smell.add_location(location) }
 
       it { should == [location, location] }
     end
@@ -39,7 +39,17 @@ describe Watchr::Smell do
 
   its(:description) { should == description }
 
-  its(:details) { should == details }
+  describe '#details' do
+    context 'without any' do
+      its(:details) { should == nil }
+    end
+
+    context 'with given' do
+      before { smell.details = details }
+
+      its(:details) { should == details }
+    end
+  end
 
   its(:context) { should == context }
 end
