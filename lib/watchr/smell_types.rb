@@ -6,10 +6,11 @@ module Watchr
       :complex_object,
       :very_complex_object,
       :too_many_statements,
-      
+
       :identical_code,
       :similar_code,
 
+      :control_parameter,
       :attribute,
       :boolean_parameter,
       :class_variable,
