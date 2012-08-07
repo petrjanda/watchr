@@ -13,7 +13,7 @@ module Watchr
     #
     # Analysed file data.
     #
-    attr_reader :files
+    attr_reader :files, :path
 
     #
     # Run the analyse.
@@ -35,6 +35,8 @@ module Watchr
           file.flay(flay.duplications_by_file(file))
         }
       end
+
+      @path = path
     end
   end
 end

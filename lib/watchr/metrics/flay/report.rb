@@ -5,6 +5,9 @@ require 'watchr/location'
 
 module Watchr
   module FlayMetric
+    #
+    # Adapted Flay report metric.
+    #
     class Report < Flay
       attr_reader :duplications
 

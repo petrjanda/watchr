@@ -10,4 +10,10 @@ describe Watchr::Analyse do
     its(:count) { should == 2 }
     its(:first) { subject.class.should == Watchr::FileAnalyse }
   end
+
+  describe '#path' do
+    subject { analyse.path }
+
+    it { should == 'spec/fixtures/' }
+  end
 end

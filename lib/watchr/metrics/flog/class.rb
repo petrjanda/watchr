@@ -1,4 +1,7 @@
 module Watchr
+  #
+  # Flog report class information.
+  #
   class FlogReportClass
     attr_reader :name, :methods, :total_score, :location
 
@@ -13,7 +16,7 @@ module Watchr
     end
 
     def total_methods_score
-      @methods.reduce(0) {|sum, i| sum += i.total_score}
+      @methods.reduce(0) {|sum, method| sum += method.total_score}
     end
 
     def add_method(method_report)
