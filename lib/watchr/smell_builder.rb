@@ -8,7 +8,7 @@ module Watchr
     attr_reader :smell
 
     def initialize(type, context, description)
-      assert_smell_type(type)
+      assert_valid_smell_type(type)
 
       @smell = Smell.new(type, context, description)
     end
@@ -23,7 +23,7 @@ module Watchr
 
     private
 
-    def assert_smell_type(type)
+    def assert_valid_smell_type(type)
       raise "Invalid smell type '#{type}'" \
         unless ALL_SMELLS.include?(type)
     end
