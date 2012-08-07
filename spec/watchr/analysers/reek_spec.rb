@@ -14,7 +14,7 @@ describe Watchr::Analysers::Reek do
 
     let(:reek_smell) { stub('smell',
       :smell => {
-        'subclass' => 'SubClass',
+        'subclass' => 'BooleanParameter',
         'message' => 'message'
       },
 
@@ -32,7 +32,7 @@ describe Watchr::Analysers::Reek do
     let(:smell) { stub('smell', :add_location => true) }
 
     it 'should add smell for each reek report smell' do
-      Watchr::Smell.expects(:new).with(:sub_class, 'context', 'message').returns(smell)
+      Watchr::Smell.expects(:new).with(:boolean_parameter, 'context', 'message').returns(smell)
 
       analyse.expects(:add_smell).returns(smell)
 
