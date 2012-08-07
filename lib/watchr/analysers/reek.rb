@@ -1,4 +1,4 @@
-require 'watchr/smell'
+require 'watchr/smell_builder'
 
 module Watchr
   module Analysers
@@ -7,18 +7,21 @@ module Watchr
 
       def analyse_reek(report)
         report.smells.each do |reek_smell|
-          smell = Watchr::Smell.new(
-            underscore(reek_smell.smell['subclass']).to_sym, 
-            reek_smell.location['context'], 
-            reek_smell.smell['message'], 
+          location = reek_smell.location
+          smell = reek_smell.smell
+
+          builder = Watchr::SmellBuilder.new(
+            underscore(smell['subclass']).to_sym, 
+            location['context'], 
+            smell['message'], 
           )
 
-          smell.add_location(Location.new(
-            reek_smell.location['source'], 
-            reek_smell.location['lines'].first
-          ))
+          builder.add_location(
+            location['source'], 
+            location['lines'].first
+          )
 
-          add_smell(smell)
+          add_smell(builder.smell)
         end
       end
 
