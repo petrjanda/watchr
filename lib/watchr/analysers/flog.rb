@@ -1,6 +1,7 @@
 require 'watchr/smell'
 require 'watchr/smell_types'
 
+require 'watchr/smell_builder'
 module Watchr
   module Analysers
     module Flog
@@ -36,14 +37,16 @@ module Watchr
 
       def analyse_complexity(target, type)
         score = target.total_score
+        return unless is_complex?(score, type)
 
-        add_smell(
-          Watchr::Smell.new(
-            smell_type(score, type), target.name, 
-            "complexity = #{score}", target.location,
-            { :complexity => score }
-          )
-        ) if is_complex?(score, type)
+        builder = Watchr::SmellBuilder.new(
+          smell_type(score, type), target.name, "complexity = #{score}"
+        )
+
+        builder.add_location(target.location.file, target.location.line)
+        builder.add_details({ :complexity => score })
+
+        add_smell(builder.smell)
       end
 
       def smell_type(score, type)

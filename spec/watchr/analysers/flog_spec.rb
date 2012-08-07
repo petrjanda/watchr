@@ -9,27 +9,32 @@ describe Watchr::Analysers::Flog do
     analyse
   }
 
+  let(:location) { stub('location', 
+    :file => 'foo.rb', 
+    :line => 20) 
+  }
+
   let(:method) { stub('method',
     :name => 'method',
-    :location => stub('location'),
+    :location => location,
     :total_score => 10) 
   }
 
   let(:complex_method) { stub('method',
     :name => 'complex_method',
-    :location => stub('location'),
+    :location => location,
     :total_score => 30)
   }
 
   let(:very_complex_method) { stub('method',
     :name => 'very_complex_method',
-    :location => stub('location'),
+    :location => location,
     :total_score => 100)
   }
 
   let(:clazz) { stub('class',
     :name => 'Class',
-    :location => stub('location'),
+    :location => location,
     :total_score => 100,
     :methods => [method, complex_method, very_complex_method])
   }
@@ -43,16 +48,20 @@ describe Watchr::Analysers::Flog do
   describe '#analyse_flog' do
     let(:smell) { stub('smell') }
 
-    before { Watchr::Smell.stubs(:new).returns(smell) }
+    let(:builder) { stub('builder', 
+      :add_location => true, 
+      :add_details => true, 
+      :smell => smell) 
+  }
+
+    before { Watchr::SmellBuilder.stubs(:new).returns(builder) }
 
     it 'should add smell for complex method' do
-      Watchr::Smell.expects(:new).with(
+      Watchr::SmellBuilder.expects(:new).with(
         :complex_method,
         complex_method.name,
         "complexity = #{complex_method.total_score}",
-        complex_method.location,
-        { :complexity => complex_method.total_score }
-      )
+      ).returns(builder)
 
       analyse.expects(:add_smell).returns(smell)
 
@@ -60,13 +69,11 @@ describe Watchr::Analysers::Flog do
     end
 
     it 'should add smell for very complex method' do
-      Watchr::Smell.expects(:new).with(
+      Watchr::SmellBuilder.expects(:new).with(
         :very_complex_method,
         very_complex_method.name,
-        "complexity = #{very_complex_method.total_score}",
-        very_complex_method.location,
-        { :complexity => very_complex_method.total_score }
-      )
+        "complexity = #{very_complex_method.total_score}"
+      ).returns(builder)
 
       analyse.expects(:add_smell).returns(smell)
 
@@ -74,13 +81,11 @@ describe Watchr::Analysers::Flog do
     end
 
     it 'should add smell for very complex object' do
-      Watchr::Smell.expects(:new).with(
+      Watchr::SmellBuilder.expects(:new).with(
         :very_complex_object,
         clazz.name,
         "complexity = #{clazz.total_score}",
-        clazz.location,
-        { :complexity => clazz.total_score }
-      )
+      ).returns(builder)
 
       analyse.expects(:add_smell).returns(smell)
 
