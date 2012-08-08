@@ -1,6 +1,6 @@
-require "watchr/version"
+require 'watchr/version'
 require 'watchr/analyse'
+require 'watchr/smell_types'
 
 module Watchr
-  # Your code goes here...
 end

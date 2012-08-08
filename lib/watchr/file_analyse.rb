@@ -3,7 +3,6 @@ require 'watchr/metrics/reek/report'
 require 'watchr/smells_collector'
 require 'watchr/analysers/flog'
 require 'watchr/analysers/reek'
-require 'watchr/rating'
 
 module Watchr
   #
@@ -14,7 +13,6 @@ module Watchr
   class FileAnalyse
     include Analysers::Flog
     include Analysers::Reek
-    include Rating
 
     attr_reader :path
 

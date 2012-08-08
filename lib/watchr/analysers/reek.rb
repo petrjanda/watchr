@@ -13,7 +13,7 @@ module Watchr
           builder = Watchr::SmellBuilder.new(
             underscore(smell['subclass']).to_sym, 
             location['context'], 
-            smell['message'], 
+            smell['message']
           )
 
           builder.add_location(
