@@ -30,7 +30,10 @@ module Watchr
       :uncommunicative_module_name,
       :uncommunicative_parameter_name,
       :uncommunicative_variable_name,
-      :utility_function
+      :utility_function,
+
+      :too_many_instance_variables,
+      :repeated_conditional      
     ]
   end
 end
