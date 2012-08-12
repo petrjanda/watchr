@@ -25,7 +25,12 @@ module Watchr
       @path = path
       @smells = SmellsCollector.new
       
-      analyse_flog(FlogMetric::Report.new([path]))
+      begin
+        analyse_flog(FlogMetric::Report.new([path]))
+      rescue Racc::ParseError => e 
+        puts e
+      end
+      
       analyse_reek(ReekMetric::Report.new([path]))
     end
 
