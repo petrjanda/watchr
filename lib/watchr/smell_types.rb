@@ -33,6 +33,7 @@ module Watchr
       :utility_function,
 
       :too_many_instance_variables,
+      :too_many_methods,
       :repeated_conditional      
     ]
   end
