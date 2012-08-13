@@ -52,7 +52,7 @@ describe Watchr::Analysers::Flog do
       :add_location => true, 
       :add_details => true, 
       :smell => smell) 
-  }
+    }
 
     before { Watchr::SmellBuilder.stubs(:new).returns(builder) }
 

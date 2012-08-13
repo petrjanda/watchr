@@ -43,7 +43,7 @@ module Watchr
           smell_type(score, type), target.name, "complexity = #{score}"
         )
 
-        builder.add_location(target.location.file, target.location.line)
+        builder.add_location(target.location.file, target.location.line) if target.location
         builder.add_details({ :complexity => score })
 
         add_smell(builder.smell)
