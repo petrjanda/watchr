@@ -1,13 +1,11 @@
 module Watchr
   module Paths
-    def self.files_by_dirs *dirs
-      extensions = ['rb']
-
-      dirs.flatten.map { |p|
-        if File.directory? p then
-          Dir[File.join(p, '**', "*.{#{extensions.join(',')}}")]
+    def self.files_by_dirs(extensions, *dirs)
+      dirs.flatten.map { |dir|
+        if File.directory?(dir) then
+          Dir[File.join(dir, '**', "*.{#{extensions.join(',')}}")]
         else
-          p
+          dir
         end
       }.flatten.sort
     end

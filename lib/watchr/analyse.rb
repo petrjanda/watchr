@@ -21,18 +21,18 @@ module Watchr
     # @param {String} Path to code folders.
     #
     def initialize(path)
-      files = Paths.files_by_dirs(path)
+      files = Paths.files_by_dirs(['rb'], path)
 
       # Flay essentially cant be done on file level because its first class
       # citizen is duplication of code between files. Its done once for all
       # the files in the analyse and results are injected to the proper file
       # later.
-      flay = Watchr::FlayMetric::Report.new(files)
+      # flay = Watchr::FlayMetric::Report.new(files)
 
       # Create report for each file.
       @files = files.map do |file|
         Watchr::FileAnalyse.new(file).tap { |file|
-          file.flay(flay.duplications_by_file(file))
+          # file.flay(flay.duplications_by_file(file))
         }
       end
 

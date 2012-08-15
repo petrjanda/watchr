@@ -11,12 +11,10 @@ module Watchr
         methods.each do |name, score|
           next if name =~ /#none/
 
-          clazz.add_method(
-            FlogReportMethod.new(
-              clazz, name, score,
-              Location.from_path(method_locations[name])
-            )
-          )
+          method_location = method_locations[name]
+          location = method_location ? Location.from_path(method_location) : nil
+
+          clazz.add_method(FlogReportMethod.new(clazz, name, score, location))
         end
 
         clazz
