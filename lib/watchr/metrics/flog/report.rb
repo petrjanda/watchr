@@ -15,7 +15,7 @@ module Watchr
       # @param {Array} Array of file paths.
       #
       def initialize(files)
-        super({})
+        super(:continue => true)
 
         flog(files)
         process_result
