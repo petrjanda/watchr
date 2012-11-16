@@ -60,7 +60,7 @@ describe Watchr::Analysers::Flog do
       Watchr::SmellBuilder.expects(:new).with(
         :complex_method,
         complex_method.name,
-        "complexity = #{complex_method.total_score}",
+        "complexity = #{complex_method.total_score}"
       ).returns(builder)
 
       analyse.expects(:add_smell).returns(smell)
@@ -84,7 +84,7 @@ describe Watchr::Analysers::Flog do
       Watchr::SmellBuilder.expects(:new).with(
         :very_complex_object,
         clazz.name,
-        "complexity = #{clazz.total_score}",
+        "complexity = #{clazz.total_score}"
       ).returns(builder)
 
       analyse.expects(:add_smell).returns(smell)

@@ -24,5 +24,4 @@ Gem::Specification.new do |s|
   s.add_dependency 'flog'
   s.add_dependency 'flay'
   s.add_dependency 'reek'
-  s.add_dependency 'ruby2ruby'
 end

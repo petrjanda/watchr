@@ -64,7 +64,7 @@ module Watchr
       end
 
       def is_complex_by_level?(score, type, level)
-        score >= Flog.const_get("#{level.upcase}_#{type.upcase}_THRESHOLD")
+        score >= Flog.const_get("#{level.to_s.upcase}_#{type.to_s.upcase}_THRESHOLD")
       end
     end
   end

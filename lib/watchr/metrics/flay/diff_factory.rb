@@ -5,11 +5,8 @@ module Watchr
         diff = Diff.new(same, nodes, bonus, mass)
 
         nodes.each do |x|
-          diff.add_location(Location.new(x.file, x.line))
+          diff.add_location(Location.new(x.file, x.line - 1))
         end
-
-        #r2r = Ruby2Ruby.new
-        #diff.code = n_way_diff(*nodes.map { |s| r2r.process(s.deep_clone) })
 
         diff
       end
