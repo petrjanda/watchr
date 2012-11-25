@@ -38,6 +38,14 @@ module Watchr
       smells.any?
     end
 
+    def loc
+      stats_report.loc
+    end
+
+    def code_loc
+      stats_report.code_loc
+    end
+
     #
     # Store the flay report, which was evaluated on global basis
     # to check for duplications across multiple files.
@@ -55,6 +63,12 @@ module Watchr
 
     def add_smell(smell)
       @smells.add(smell)
+    end
+
+    private
+
+    def stats_report
+      @stats ||= Stats::Report.new(path)
     end
   end
 end
