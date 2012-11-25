@@ -10,6 +10,9 @@ module Baz
       end
     end
 
+    #
+    # Bar
+    #
     def self.bar
       if true == false
         return false
