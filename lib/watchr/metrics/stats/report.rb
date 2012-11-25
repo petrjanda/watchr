@@ -1,50 +1,47 @@
 module Watchr
   module Stats
     class Report
-      attr_reader :loc, :code_loc, :classes, :methods
+      attr_reader :loc, :code_loc
 
       def initialize(file_name)
         @file_name = file_name
 
-        calculate_statistics
+        @loc = 0
+        @code_loc = 0
+        @inside_comment = false
+
+        calculate
       end
 
       private
 
-      def calculate_statistics
-        stats = { "lines" => 0, "codelines" => 0, "classes" => 0, "methods" => 0 }
-
-        comment_started = false
-        comment_pattern = /^\s*#/
-
-        File.open(@file_name) do |f|
-          while line = f.gets
-            stats["lines"] += 1
-
-            if(comment_started)
-              if line =~ /^=end/
-                comment_started = false
-              end
-              next
-            else
-              if line =~ /^=begin/
-                comment_started = true
-                next
-              end
-            end
-            
-            stats["classes"]   += 1 if line =~ /^\s*class\s+[_A-Z]/
-            stats["methods"]   += 1 if line =~ /^\s*def\s+[_a-z]/
-            stats["codelines"] += 1 unless line =~ /^\s*$/ || line =~ comment_pattern
+      def calculate
+        File.open(@file_name) do |file|
+          while line = file.gets
+            calculate_line(line)
           end
         end
+      end
 
+      def calculate_line(line)
+        @loc += 1
 
-        @loc = stats["lines"]
-        @code_loc = stats["codelines"]
-        @classes = stats["classes"]
-        @methods = stats["methods"]
-        stats
+        comment_end if inside_comment? && line =~ /^=end/
+        comment_start if line =~ /^=begin/
+        
+        @code_loc += 1 unless line =~ /^\s*$/ || line =~ /^\s*#/
+      end
+
+      def inside_comment?
+        @inside_comment
+      end
+
+      def comment_start
+        @inside_comment = true
+      end
+
+      def comment_end
+        @inside_comment = false
       end
     end
   end

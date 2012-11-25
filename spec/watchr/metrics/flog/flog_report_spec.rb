@@ -59,7 +59,7 @@ describe Watchr::FlogMetric::Report do
             subject { flog_report.classes.first.methods.first.location }
 
             its(:file) { should == 'spec/fixtures/class.rb' }
-            its(:line) { should == 13 }
+            its(:line) { should == 16 }
           end
 
         end
