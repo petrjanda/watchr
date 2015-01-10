@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+path = ARGV[0]
+
+$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
+
+require 'watchr/analyse'
+
+puts Watchr::Analyse.new(path).files.inspect

@@ -7,25 +7,27 @@ module Watchr
 
       def analyse_reek(report)
         report.smells.each do |reek_smell|
-          location = reek_smell.location
-          smell = reek_smell.smell
+          puts reek_smell.context.inspect
+
+
+          puts reek_smell.smell_type
 
           builder = Watchr::SmellBuilder.new(
-            underscore(smell['subclass']).to_sym, 
-            location['context'], 
-            smell['message']
+            underscore(reek_smell.smell_type).to_sym,
+            reek_smell.context,
+            reek_smell.message
           )
 
           builder.add_location(
-            location['source'], 
-            location['lines'].first
+            reek_smell.source,
+            reek_smell.lines.first
           )
 
           add_smell(builder.smell)
         end
       end
 
-      private 
+      private
 
       def underscore(text)
         text.gsub(/::/, '/').
