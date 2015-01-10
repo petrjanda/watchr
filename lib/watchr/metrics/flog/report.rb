@@ -17,7 +17,9 @@ module Watchr
       def initialize(files)
         super(:continue => true)
 
-        flog(files)
+        puts files.inspect
+
+        flog(*files)
         process_result
       end
 

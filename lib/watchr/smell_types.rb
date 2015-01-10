@@ -34,7 +34,11 @@ module Watchr
 
       :too_many_instance_variables,
       :too_many_methods,
-      :repeated_conditional      
+      :repeated_conditional,
+
+      :nil_check,
+      :prima_donna_method,
+      :unused_parameters
     ]
   end
 end
